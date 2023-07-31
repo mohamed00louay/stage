@@ -1,0 +1,194 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#" style="color: white;">
+    <i class="fa fa-users"></i> Former Manager
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" (click)="onOpenModal(null, 'add')" style="cursor: pointer;">
+          <button class="btn btn-add-former">Add Former</button>
+        </a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="input-group">
+        <input type="search" (ngModelChange)="searchFormateurs(key.value)" #key="ngModel" ngModel name="key" id="searchName" class="form-control mr-sm-2 rounded-pill" placeholder="Search formers..." required>
+        <div class="input-group-append">
+          <button class="btn btn-outline-info rounded-pill" type="submit">
+            <i class="fa fa-search"></i> Search
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<div class="container" id="main-container">
+  <div class="row">
+    <div *ngFor="let formateur of formateurs" class="col-md-6 col-xl-3 fade-in">
+      <div class="card m-b-30 custom-card">
+        <div class="card-body row">
+          <div class="col-12 card-title align-self-center mb-0">
+            <h5>{{formateur?.name || 'No Name'}}</h5>
+            <p class="m-0">{{formateur?.expertise || 'No Expertise'}}</p>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{formateur?.email || 'No Email'}}</li>
+          <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{formateur?.phone || 'No Phone'}}</li>
+        </ul>
+        <div class="card-footer">
+          <div class="btn-group btn-group-sm ">
+            <a (click)="onOpenModal(formateur, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+            <a (click)="onOpenModal(formateur, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+
+
+
+
+
+<!-- Add Former Modal -->
+<div class="modal fade slide-up" id="addFormateurModal" tabindex="-1" role="dialog" aria-labelledby="addFormerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addFormerModalLabel">Add Former</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddFormateur(addForm)" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="expertise">Expertise</label>
+            <input type="text" ngModel name="expertise" class="form-control" id="expertise" placeholder="Expertise" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Phone" required>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+   <!-- Edit Modal -->
+   <div class="modal fade slide-up" id="updateFormateurModal" tabindex="-1" role="dialog" aria-labelledby="formateurEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateFormateurModalLabel">Edit Former {{editFormateur?.name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" [(ngModel)]="editFormateur.name" name="name" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name">
+            </div>
+            <input type="hidden" [(ngModel)]="editFormateur.id" name="id" class="form-control" id="id" placeholder="ID">
+            <input type="hidden" [(ngModel)]="editFormateur.formateurCode" name="userCode" class="form-control" id="userCode" placeholder="Email">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" [(ngModel)]="editFormateur.email" name="email" class="form-control" id="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Expertise</label>
+              <input type="text" [(ngModel)]="editFormateur.expertise" name="expertise" class="form-control" id="expertise" placeholder="Expertise">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="text" [(ngModel)]="editFormateur.phone" name="phone" class="form-control" id="phone" name="phone" placeholder="Phone">
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+              <button (click)="onUpdateFormateur(editFormateur)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Delete Modal -->
+  <div class="modal fade slide-up" id="deleteFormateurModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModelLabel">Delete Former</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete Former {{deleteFormateur?.name}}?</p>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button (click)="onDeleteFormateur(deleteFormateur?.id || -1)" class="btn btn-danger" data-dismiss="modal"> Yes </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="formateurs.length === 0 && !searchKey" class="col-lg-12 col-md-12 col-xl-12 " >
+  <div class="alert alert-info" role="alert">
+    <h4 class="alert-heading">NO FORMERS!</h4>
+    <p>No Formers were found.</p>
+  </div>
+</div>
+
+<footer class="footer mt-auto py-5 bg-dark">
+ <div class="container">
+   <div class="row">
+     <div class="col-md-4">
+       <h5 class="text-white mb-4">Contact Information</h5>
+       <address class="text-white">
+         <i class="fa fa-map-marker mr-2"></i> Elgazala Technopark, Raoued,<br>
+         <span class="ml-4">Gouvernorat de l'Ariana, 2088 Ariana - Tunisie</span><br>
+         <i class="fa fa-phone mr-2"></i> (+216) 71 856 600<br>
+         <i class="fa fa-fax mr-2"></i> (+216) 71 857 600<br>
+         <i class="fa fa-envelope mr-2"></i> contact@elgazala.tn
+       </address>
+     </div>
+     <div class="col-md-4 text-center">
+       <h5 class="text-white mb-4">Smart Tunisian Technoparks</h5>
+       <p class="text-white mb-0">Powered by Ministry of Communication Technologies of Tunisia</p>
+     </div>
+     <div class="col-md-4 text-md-right">
+       <p class="text-white mb-0">&copy; 2023 Smart Tunisian Technoparks. All rights reserved.</p>
+     </div>
+   </div>
+ </div>
+</footer>
+
+
+

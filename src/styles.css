@@ -1,0 +1,438 @@
+/* Import Bootstrap and Font Awesome */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+
+/* Colors */
+:root {
+  --primary-color: #007bff;
+  --primary-color-dark: #0056b3;
+  --info-color: #17a2b8;
+  --danger-color: #dc3545;
+  --background-color: #f5f5f5;
+  --text-color: #707070;
+  --white-color: #ffffff;
+}
+
+/* Global styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Navbar styles */
+.navbar {
+  margin-bottom: 30px;
+  background-color: #333;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: var(--white-color);
+}
+
+/* Add Former button styles */
+.btn-add-former {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-add-former:hover {
+  background-color: var(--primary-color-dark);
+}
+
+/* Search form styles */
+.form-inline {
+  margin-top: 10px;
+}
+
+.form-control {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: none;
+}
+
+/* Search button styles */
+.btn-search {
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 30px;
+  color: var(--white-color);
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-search i {
+  margin-right: 5px;
+}
+
+.btn-search:hover {
+  background-color: var(--primary-color-dark);
+}
+
+/* Card styles */
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 30px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Custom styles for the card */
+.custom-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+}
+
+.custom-card .card-body {
+  padding: 20px;
+}
+
+.custom-card .card-title {
+  margin-top: 10px;
+}
+
+.custom-card .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.custom-card .list-group-item .fa {
+  margin-left: 10px;
+}
+
+.custom-card .card-footer {
+  background-color: var(--background-color);
+  border-top: none;
+  padding: 10px 20px;
+}
+
+.custom-card .btn-group {
+  margin-right: 5px;
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 767px) {
+  .custom-card .btn-group {
+    margin-top: 10px;
+  }
+}
+
+/* Alert styles */
+.alert-info {
+  background-color: var(--info-color);
+  color: var(--white-color);
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Customize the Close button in modals */
+.modal-header .close {
+  color: var(--white-color);
+}
+
+/* Style the modal footer buttons */
+.modal-footer .btn {
+  color: var(--white-color);
+}
+
+/* Style the Save changes button in the modals */
+.modal-footer .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Style the Delete button in the Delete modal */
+.modal-footer .btn-danger {
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+}
+
+/* Hover effect on the modal footer buttons */
+.modal-footer .btn:hover {
+  opacity: 0.8;
+}
+
+/* App container styles */
+#main-container {
+  padding: 30px 0;
+  flex-grow: 1;
+}
+
+/* Formers list styles */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-xl-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+/* Former card styles */
+.card-body {
+  display: flex;
+}
+
+.img-fluid {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.card-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card-title h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-title p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item .fa {
+  margin-left: 10px;
+}
+
+/* Former action buttons styles */
+.btn-group {
+  margin-left: auto;
+}
+
+.btn-group .btn {
+  margin-left: 5px;
+}
+
+/* Modals styles */
+.modal-content {
+  /* Add your custom styles for the modal content here */
+}
+
+.modal-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.modal-footer .btn {
+  font-size: 0.9rem;
+}
+
+/* Customize the No FORMERS! Alert */
+.alert-heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Social links styles */
+.social-links li a {
+  border-radius: 50%;
+  background-color: rgba(89, 206, 181, 0.85);
+  color: #fff;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 30px;
+  font-size: 12px;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: var(--white-color);
+  padding: 20px 0;
+}
+
+.footer h5 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer address {
+  font-size: 14px;
+}
+
+.footer .text-md-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.footer .text-md-right p {
+  margin: 0;
+  font-size: 12px;
+}
+
+/* Adjustments for mobile devices */
+@media (max-width: 576px) {
+  .navbar-brand {
+    font-size: 1.6rem;
+  }
+  .btn-add-former {
+    font-size: 1rem;
+    padding: 8px 20px;
+  }
+  .form-control {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+  .btn-search {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+  .card-title h5 {
+    font-size: 1rem;
+  }
+  .card-title p {
+    font-size: 0.8rem;
+  }
+  .list-group-item .fa {
+    font-size: 14px;
+  }
+  .modal-title {
+    font-size: 1.1rem;
+  }
+  .modal-footer .btn {
+    font-size: 0.8rem;
+  }
+  .alert-heading {
+    font-size: 1.1rem;
+  }
+  .footer h5 {
+    font-size: 1rem;
+  }
+  .footer p {
+    font-size: 12px;
+  }
+}
+
+/* Fix for footer placement */
+html, body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-container {
+  flex: 1;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  animation: fadeInAnimation 1s ease forwards;
+}
+
+@keyframes fadeInAnimation {
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  transform: translateY(50px);
+  animation: slideUpAnimation 1s ease forwards;
+}
+
+@keyframes slideUpAnimation {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bounce {
+  animation: bounceAnimation 1s infinite;
+}
+
+@keyframes bounceAnimation {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+.pulse {
+  animation: pulseAnimation 1s infinite;
+}
+
+@keyframes pulseAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
